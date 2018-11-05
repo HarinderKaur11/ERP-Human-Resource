@@ -3,7 +3,6 @@ package spm.erp.hr.domain.Entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Leave {
@@ -11,8 +10,8 @@ public class Leave {
 	@Id
 	@GeneratedValue
 	private Integer leaveId;
-	@OneToOne(mappedBy = "leaves")
-	private Employee emp_id;
+//	@OneToOne(mappedBy = "leaves")
+//	private Employee emp_id;
 	private Integer leavesAllowed;
 	private Integer leaversTaken;
 
@@ -40,12 +39,12 @@ public class Leave {
 		this.leaveId = leaveId;
 	}
 
-	public Employee getEmp_id() {
-		return emp_id;
-	}
-
-	public void setEmp_id(Employee emp_id) {
-		this.emp_id = emp_id;
-	}
+//	public Employee getEmp_id() {
+//		return emp_id;
+//	}
+//
+//	public void setEmp_id(Employee emp_id) {
+//		this.emp_id = emp_id;
+//	}
 
 }
