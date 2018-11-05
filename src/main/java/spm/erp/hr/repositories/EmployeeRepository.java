@@ -1,5 +1,9 @@
 package spm.erp.hr.repositories;
 
-public class EmployeeRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import spm.erp.hr.domain.Entities.Employee;
+
+public interface EmployeeRepository extends CrudRepository<Employee, String> {
 
 }
