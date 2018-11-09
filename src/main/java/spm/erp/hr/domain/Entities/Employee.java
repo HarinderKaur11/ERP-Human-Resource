@@ -1,16 +1,21 @@
 package spm.erp.hr.domain.Entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer empId;
 	private String name;
 	private Integer dob;
 	private String address;
@@ -25,10 +30,13 @@ public class Employee {
 //		this.leaves = leaves;
 //	}
 
-//	@OneToOne
-//	private Leave leaves;
+	@JsonManagedReference
+	@OneToOne(mappedBy = "employee", cascade = { CascadeType.ALL })
+	private Leave leaves;
 
-//	Employee supervisor;
+	@OneToOne(cascade = { CascadeType.PERSIST })
+	@JoinColumn(name = "supervisor")
+	Employee supervisor;
 
 	public Employee() {
 		// No argument Constructor
@@ -41,15 +49,15 @@ public class Employee {
 		this.address = address;
 		this.status = status;
 		this.role = role;
-		// this.supervisor = supervisor;
+		this.supervisor = supervisor;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getEmpId() {
+		return empId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 
 	public String getName() {
@@ -92,12 +100,20 @@ public class Employee {
 		this.role = role;
 	}
 
-//	public Employee getSupervisor() {
-//		return supervisor;
-//	}
-//
-//	public void setSupervisor(Employee supervisor) {
-//		this.supervisor = supervisor;
-//	}
+	public Leave getLeaves() {
+		return leaves;
+	}
+
+	public void setLeaves(Leave leaves) {
+		this.leaves = leaves;
+	}
+
+	public Employee getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(Employee supervisor) {
+		this.supervisor = supervisor;
+	}
 
 }

@@ -2,18 +2,33 @@ package spm.erp.hr.domain.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Leave {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer leaveId;
-//	@OneToOne(mappedBy = "leaves")
-//	private Employee emp_id;
+	@OneToOne()
+	@JoinColumn(name = "employ")
+	@JsonBackReference
+	private Employee employee;
 	private Integer leavesAllowed;
 	private Integer leaversTaken;
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
 	public Integer getLeavesAllowed() {
 		return leavesAllowed;

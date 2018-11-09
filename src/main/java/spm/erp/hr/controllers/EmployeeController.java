@@ -1,7 +1,6 @@
 package spm.erp.hr.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,34 +13,30 @@ import spm.erp.hr.domain.Entities.Employee;
 import spm.erp.hr.services.EmployeeService;
 
 @RestController
-@RequestMapping("/hr")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
 
-	@RequestMapping("/employees")
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
 
-	@RequestMapping("/employees/{id}")
-	public Optional<Employee> getEmployee(@PathVariable String id) { // TODO: inspect optional type
+	@RequestMapping("/{id}")
+	public Employee getEmployee(@PathVariable Integer id) {
 		return employeeService.getEmployee(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/employees")
-	public void addEmployee(@RequestBody Employee newEmployee) {
-		employeeService.addEmployee(newEmployee);
+	@RequestMapping(method = RequestMethod.POST)
+	public Employee addEmployee(@RequestBody Employee employee) {
+		return employeeService.addEmployee(employee);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/employees/{id}")
-	public void updateEmployee(@PathVariable String id, @RequestBody Employee updatedEmployee) {
-		employeeService.updateEmployee(id, updatedEmployee);
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee updatedEmployee) {
+		return employeeService.updateEmployee(id, updatedEmployee);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "/employees/{id}")
-	public void deactivateEmployee(@PathVariable String id) {
-		employeeService.deactivateEmployee(id);
-	}
 }

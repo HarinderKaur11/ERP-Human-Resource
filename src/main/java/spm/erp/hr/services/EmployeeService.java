@@ -2,13 +2,15 @@ package spm.erp.hr.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import spm.erp.hr.domain.Entities.Employee;
+import spm.erp.hr.exceptions.ResourceNotFoundException;
 import spm.erp.hr.repositories.EmployeeRepository;
 
+@Service
 public class EmployeeService {
 
 	@Autowired
@@ -20,19 +22,20 @@ public class EmployeeService {
 		return employees;
 	}
 
-	public Optional<Employee> getEmployee(String id) { // TODO: Inspect optional
-		return employeeRepository.findById(id);
+	public Employee getEmployee(Integer id) {
+		return employeeRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No employee exist with ID:" + id));
 	}
 
-	public void updateEmployee(String id, Employee updatedEmployee) {
-		employeeRepository.save(updatedEmployee);
+	public Employee updateEmployee(Integer id, Employee updatedEmployee) {
+		employeeRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No employee exist with ID:" + id));
+		return employeeRepository.save(updatedEmployee);
 	}
 
-	public void addEmployee(Employee newEmployee) {
-		employeeRepository.save(newEmployee);
+	public Employee addEmployee(Employee employee) {
+		employee.getLeaves().setEmployee(employee);
+		return employeeRepository.save(employee);
 	}
 
-	public void deactivateEmployee(String id) {
-		// TODO
-	}
 }

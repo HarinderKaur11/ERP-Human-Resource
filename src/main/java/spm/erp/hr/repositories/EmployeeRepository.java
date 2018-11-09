@@ -1,9 +1,11 @@
 package spm.erp.hr.repositories;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import spm.erp.hr.domain.Entities.Employee;
 
-public interface EmployeeRepository extends CrudRepository<Employee, String> {
+@Repository
+public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
 }
