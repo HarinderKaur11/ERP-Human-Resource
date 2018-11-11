@@ -20,7 +20,7 @@ public class Leave {
 	@JsonBackReference
 	private Employee employee;
 	private Integer leavesAllowed;
-	private Integer leaversTaken;
+	private Integer leavesTaken;
 
 	public Employee getEmployee() {
 		return employee;
@@ -38,12 +38,12 @@ public class Leave {
 		this.leavesAllowed = leavesAllowed;
 	}
 
-	public Integer getLeaversTaken() {
-		return leaversTaken;
+	public Integer getLeavesTaken() {
+		return leavesTaken;
 	}
 
-	public void setLeaversTaken(Integer leaversTaken) {
-		this.leaversTaken = leaversTaken;
+	public void setLeavesTaken(Integer leavesTaken) {
+		this.leavesTaken = leavesTaken;
 	}
 
 	public Integer getLeaveId() {

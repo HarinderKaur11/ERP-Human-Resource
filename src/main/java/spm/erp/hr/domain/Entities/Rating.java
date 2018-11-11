@@ -1,10 +1,16 @@
 package spm.erp.hr.domain.Entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import spm.erp.hr.enums.RatingType;
 
 @Entity
 public class Rating {
@@ -13,12 +19,13 @@ public class Rating {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Id;
 	@OneToOne
-//	@JoinColumn(name = "rating_provider")
+	@JsonIgnore
 	private Employee ratingProvider;
 	@OneToOne
-//	@JoinColumn(name = "rated_employee")
+	@JsonIgnore
 	private Employee ratedEmployee;
-	private String typeOfRating;
+	@Enumerated(EnumType.STRING)
+	private RatingType typeOfRating;
 	private Integer ratingStarCount;
 	private String ratingDescription;
 
@@ -46,11 +53,11 @@ public class Rating {
 		this.ratedEmployee = ratedEmployee;
 	}
 
-	public String getTypeOfRating() {
+	public RatingType getTypeOfRating() {
 		return typeOfRating;
 	}
 
-	public void setTypeOfRating(String typeOfRating) {
+	public void setTypeOfRating(RatingType typeOfRating) {
 		this.typeOfRating = typeOfRating;
 	}
 
@@ -69,5 +76,4 @@ public class Rating {
 	public void setRatingDescription(String ratingDescription) {
 		this.ratingDescription = ratingDescription;
 	}
-
 }

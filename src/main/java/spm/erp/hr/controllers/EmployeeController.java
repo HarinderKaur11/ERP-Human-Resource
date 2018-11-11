@@ -39,4 +39,14 @@ public class EmployeeController {
 		return employeeService.updateEmployee(id, updatedEmployee);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/subordinates")
+	public List<Employee> getSubordinates(@PathVariable("id") Integer id) {
+		return employeeService.getSubordinates(id);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/supervisor")
+	public Employee getSupervisor(@PathVariable("id") Integer id) {
+		return employeeService.getSupervisor(id);
+	}
+
 }
