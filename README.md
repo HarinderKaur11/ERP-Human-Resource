@@ -8,7 +8,7 @@ To run the project locally, install:
 
 Configuration steps:
   - Create database with name 'human_resource_db'
-  - Update the username, password and port number in application.properties file
+  - Update the username, password and port number in application.properties file from your Postgres configuration
  
 Run the project:
   - Run the file HumanResourceApplication.java as Java Application
