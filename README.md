@@ -1,5 +1,6 @@
 # ERP-Human-Resource
-Java SpringBoot Project implementing a REST API serving as Human Resource microservice for Enterprise Resource Planning Application
+Java SpringBoot Project implementing a REST API serving as Human Resource microservice for Enterprise Resource Planning Application.
+
 To run the project locally, install:
   - Postgres
   - Java 8
