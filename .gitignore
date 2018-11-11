@@ -9,7 +9,7 @@
 .springBeans
 bin/
 .gradle
-build
+build/
 .apt_generated
 .factorypath
 .sts4-cache
