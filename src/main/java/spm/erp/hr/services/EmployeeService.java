@@ -30,7 +30,7 @@ public class EmployeeService {
 	}
 
 	public Employee updateEmployee(Integer id, Employee updatedEmployee) {
-		employeeRepository.findById(id)
+		Employee oldEmployee = employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No employee exist with ID:" + id));
 		return employeeRepository.save(updatedEmployee);
 	}

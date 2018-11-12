@@ -26,7 +26,7 @@ public class RatingController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Rating> getRatingForEmployee(@RequestParam Integer empId) {
+	public List<Rating> getRatingForEmployee(@RequestParam("empid") Integer empId) {
 		return ratingService.getRatingforEmployee(empId);
 	}
 }

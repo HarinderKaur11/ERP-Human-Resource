@@ -1,6 +1,7 @@
 package spm.erp.hr.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class LeaveService {
 		}
 		Employee emp = employeeService.getEmployee(empId);
 		Leave leaves = emp.getLeaves();
-		leaves.setLeavesTaken(leaves.getLeavesTaken() + numOfLeaves);
+
+		leaves.setLeavesTaken(
+				Objects.nonNull(leaves.getLeavesTaken()) ? leaves.getLeavesTaken() + numOfLeaves : numOfLeaves);
 		return leaveRepository.save(leaves);
 
 	}
@@ -46,8 +49,9 @@ public class LeaveService {
 	}
 
 	public Leave updateLeaves(Integer leaveId, Leave leave) {
-		getLeave(leaveId);
+		Leave oldLeave = getLeave(leaveId);
 		leave.setLeaveId(leaveId);
+		leave.setEmployee(oldLeave.getEmployee());
 		return leaveRepository.save(leave);
 	}
 
