@@ -1,5 +1,7 @@
 package spm.erp.hr.domain.Entities;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer empId;
 	private String name;
-	private Integer dob;
+	private Date dob;
 	private String address;
 	private Boolean status;
 	private String role;
@@ -38,7 +40,7 @@ public class Employee {
 		// No argument Constructor
 	}
 
-	public Employee(String name, Integer dob, String address, Boolean status, String role, Employee supervisor) {
+	public Employee(String name, Date dob, String address, Boolean status, String role, Employee supervisor) {
 		super();
 		this.name = name;
 		this.dob = dob;
@@ -64,11 +66,11 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Integer getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(Integer dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 
