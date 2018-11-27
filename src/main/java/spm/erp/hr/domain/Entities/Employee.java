@@ -25,6 +25,7 @@ public class Employee {
 	private String address;
 	private Boolean status;
 	private String role;
+	private Double salary;
 
 	@JsonIgnore
 	@JsonManagedReference
@@ -116,6 +117,14 @@ public class Employee {
 	@JsonProperty
 	public void setSupervisor(Employee supervisor) {
 		this.supervisor = supervisor;
+	}
+
+	public Double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
 	}
 
 	@Override
